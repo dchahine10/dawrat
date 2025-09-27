@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دورات الكشافة التفاعلية</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1a3d0a 0%, #2d5a1a 25%, #4a7c59 50%, #6b9080 75%, #a4c3b2 100%);
+            --secondary-gradient: linear-gradient(45deg, rgba(26, 61, 10, 0.95), rgba(75, 124, 89, 0.95));
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --text-primary: #1a3d0a;
+            --text-secondary: #2d5a1a;
+            --accent-gold: #d4af37;
+            --accent-green: #4a7c59;
+            --shadow-luxury: 0 8px 32px rgba(26, 61, 10, 0.3);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,65 +27,124 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Cairo', 'Arial', sans-serif;
+            background: var(--primary-gradient);
+            background-attachment: fixed;
             min-height: 100vh;
             color: #333;
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="75" cy="75" r="0.3" fill="rgba(255,255,255,0.01)"/><circle cx="50" cy="10" r="0.4" fill="rgba(255,255,255,0.015)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
-        /* Header */
+        /* Luxury Header */
         .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(26, 61, 10, 0.95);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .header.scrolled {
+            background: rgba(26, 61, 10, 0.98);
+            backdrop-filter: blur(40px) saturate(200%);
         }
 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.5rem 0;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--accent-gold), #f4d03f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0.5rem;
         }
 
         .nav-links li a {
-            color: white;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            font-weight: 500;
+        }
+
+        .nav-links li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-links li a:hover::before {
+            left: 100%;
         }
 
         .nav-links li a:hover, .nav-links li a.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--accent-gold);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            color: white;
         }
 
         .hamburger {
@@ -79,27 +152,29 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            padding: 0.5rem;
         }
 
         .hamburger span {
             width: 25px;
-            height: 3px;
-            background: white;
-            transition: all 0.3s ease;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-gold), #f4d03f);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Main Content */
         .main {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
         }
 
         .tab-content {
             display: none;
-            padding: 2rem 0;
+            padding: 3rem 0;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .tab-content.active {
@@ -108,180 +183,384 @@
             transform: translateY(0);
         }
 
-        /* Home Page */
+        /* Luxury Home Page */
         .hero {
             text-align: center;
-            padding: 4rem 0;
+            padding: 6rem 0;
             color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 4s ease-in-out infinite;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, white, var(--accent-gold), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-15px) scale(1.03);
             background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent-gold), #f4d03f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: block;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
-        /* Section Styles */
+        .card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Premium Section Styles */
         .section {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 2rem 0;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            animation: slideInUp 0.6s ease;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            margin: 3rem 0;
+            border-radius: 32px;
+            padding: 4rem;
+            box-shadow: var(--shadow-luxury);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), #f4d03f, var(--accent-gold));
+            border-radius: 32px 32px 0 0;
         }
 
         .section h2 {
-            color: #667eea;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             text-align: center;
             position: relative;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: #667eea;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), #f4d03f);
             border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
 
         .section h3 {
-            color: #764ba2;
-            font-size: 1.3rem;
-            margin: 1.5rem 0 1rem 0;
-            padding-right: 1rem;
-            border-right: 3px solid #667eea;
+            color: var(--text-secondary);
+            font-size: 1.6rem;
+            margin: 2rem 0 1.5rem 0;
+            padding-right: 2rem;
+            border-right: 4px solid var(--accent-gold);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .section h3::before {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
         }
 
         .section ul {
             list-style: none;
-            padding-right: 1rem;
+            padding-right: 2rem;
         }
 
         .section li {
-            margin: 0.8rem 0;
-            padding: 0.8rem;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 10px;
-            border-right: 3px solid #667eea;
-            transition: all 0.3s ease;
+            margin: 1.2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(74, 124, 89, 0.05), rgba(164, 195, 178, 0.05));
+            border-radius: 16px;
+            border-right: 4px solid var(--accent-green);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .section li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-gold);
+            transition: height 0.4s ease;
         }
 
         .section li:hover {
-            transform: translateX(-5px);
-            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(-8px);
+            background: linear-gradient(135deg, rgba(74, 124, 89, 0.1), rgba(164, 195, 178, 0.1));
+            box-shadow: var(--shadow-soft);
+            border-right-color: var(--accent-gold);
+        }
+
+        .section li:hover::before {
+            height: 100%;
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--secondary-gradient);
             color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 1.5rem 0;
+            padding: 3rem;
+            border-radius: 24px;
+            margin: 3rem 0;
             text-align: center;
-            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-luxury);
         }
 
-        /* Interactive Elements */
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(212, 175, 55, 0.1), transparent 30%);
+            animation: rotate 8s linear infinite;
+            pointer-events: none;
+        }
+
+        .highlight-box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        .highlight-box p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Premium Accordion */
         .accordion {
-            margin: 1rem 0;
+            margin: 2rem 0;
         }
 
         .accordion-item {
             background: white;
-            border-radius: 10px;
-            margin: 0.5rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin: 1rem 0;
+            box-shadow: var(--shadow-soft);
             overflow: hidden;
+            border: 1px solid rgba(74, 124, 89, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow-luxury);
+            transform: translateY(-2px);
         }
 
         .accordion-header {
-            padding: 1rem;
-            background: #667eea;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--accent-green), #6b9080);
             color: white;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .accordion-header:hover::before {
+            left: 100%;
         }
 
         .accordion-header:hover {
-            background: #5a6fd8;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-green));
+        }
+
+        .accordion-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: none;
+            padding: 0;
+            margin: 0;
+            color: white;
+        }
+
+        .accordion-header i {
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .accordion-content {
             padding: 0;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 1));
         }
 
         .accordion-content.active {
-            padding: 1rem;
-            max-height: 500px;
+            padding: 2rem;
+            max-height: 800px;
+        }
+
+        .accordion-content ul {
+            padding-right: 0;
+        }
+
+        .accordion-content li {
+            background: linear-gradient(135deg, rgba(74, 124, 89, 0.03), rgba(164, 195, 178, 0.03));
+            margin: 0.8rem 0;
+            padding: 1.2rem;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 100px;
                 left: 0;
                 right: 0;
-                background: rgba(102, 126, 234, 0.95);
-                backdrop-filter: blur(20px);
+                background: rgba(26, 61, 10, 0.98);
+                backdrop-filter: blur(30px);
                 flex-direction: column;
-                padding: 1rem;
+                padding: 2rem;
                 transform: translateY(-100%);
-                transition: transform 0.3s ease;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-bottom: 1px solid var(--glass-border);
             }
 
             .nav-links.active {
@@ -293,36 +572,55 @@
             }
 
             .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+                transform: rotate(45deg) translate(7px, 7px);
             }
 
             .hamburger.active span:nth-child(2) {
                 opacity: 0;
+                transform: scale(0);
             }
 
             .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
+                transform: rotate(-45deg) translate(7px, -7px);
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
             }
 
             .cards-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .card {
+                padding: 2rem;
             }
 
             .section {
-                margin: 1rem 0;
+                margin: 2rem 0;
+                padding: 2rem;
+                border-radius: 20px;
+            }
+
+            .section h2 {
+                font-size: 2.2rem;
+            }
+
+            .accordion-header, .accordion-content.active {
                 padding: 1.5rem;
             }
         }
 
-        /* Animations */
+        /* Premium Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -333,29 +631,32 @@
         @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(60px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
             }
-            70% {
-                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.6;
             }
         }
 
-        /* Floating Animation */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes floating {
@@ -363,27 +664,92 @@
                 transform: translateY(0px);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
+        }
+
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        /* Premium Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--accent-gold);
+            border-right: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), #f4d03f);
+            z-index: 1001;
+            transition: width 0.25s ease;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">🏕️ دورات الكشافة</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" data-tab="home" class="nav-link active">الرئيسية</a></li>
-                <li><a href="#" data-tab="leader" class="nav-link">قائد الفوج</a></li>
-                <li><a href="#" data-tab="gatherings" class="nav-link">التجمعات الكبرى</a></li>
-                <li><a href="#" data-tab="commissioner" class="nav-link">مفوض الحلقة</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <i class="fas fa-mountain"></i>
+                    دورات الكشافة المتقدمة
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" data-tab="home" class="nav-link active">الرئيسية</a></li>
+                    <li><a href="#" data-tab="leader" class="nav-link">قائد الفوج</a></li>
+                    <li><a href="#" data-tab="gatherings" class="nav-link">التجمعات الكبرى</a></li>
+                    <li><a href="#" data-tab="commissioner" class="nav-link">مفوض الحلقة</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main class="main">
@@ -391,27 +757,27 @@
         <div id="home" class="tab-content active">
             <div class="container">
                 <div class="hero">
-                    <h1 class="floating">مرحباً بك في دورات الكشافة التفاعلية</h1>
-                    <p>اكتشف عالم الكشافة من خلال دروس تفاعلية وممتعة</p>
+                    <h1 class="floating">مرحباً بك في أكاديمية الكشافة المتقدمة</h1>
+                    <p>رحلة تعليمية استثنائية في عالم القيادة الكشفية بأحدث المعايير العالمية</p>
                 </div>
                 
                 <div class="cards-grid">
-                    <div class="card floating" data-tab="leader">
-                        <i class="fas fa-users card-icon"></i>
+                    <div class="card floating" data-tab="leader" style="animation-delay: 0.1s">
+                        <i class="fas fa-crown card-icon"></i>
                         <h3>قائد الفوج</h3>
-                        <p>تعلم عن دور ومسؤوليات قائد الفوج في الحركة الكشفية</p>
+                        <p>استكشف أسرار القيادة الاستثنائية وتعلم المهارات المتقدمة في إدارة الأفواج الكشفية بمعايير احترافية عالية</p>
                     </div>
                     
-                    <div class="card floating" data-tab="gatherings">
-                        <i class="fas fa-campground card-icon"></i>
+                    <div class="card floating" data-tab="gatherings" style="animation-delay: 0.2s">
+                        <i class="fas fa-globe-americas card-icon"></i>
                         <h3>التجمعات الكبرى</h3>
-                        <p>اكتشف كيفية إدارة وتنظيم التجمعات الكشفية الكبيرة</p>
+                        <p>احترف فن تنظيم وإدارة الفعاليات الكشفية الكبيرة على المستوى الوطني والدولي بتقنيات متطورة</p>
                     </div>
                     
-                    <div class="card floating" data-tab="commissioner">
-                        <i class="fas fa-user-tie card-icon"></i>
+                    <div class="card floating" data-tab="commissioner" style="animation-delay: 0.3s">
+                        <i class="fas fa-chess-king card-icon"></i>
                         <h3>مفوض الحلقة</h3>
-                        <p>تعرف على مهام وصفات مفوض الحلقة</p>
+                        <p>تميز في دور المفوض واكتسب المهارات الإشرافية والإدارية اللازمة للنهوض بالعمل الكشفي</p>
                     </div>
                 </div>
             </div>
@@ -421,292 +787,35 @@
         <div id="leader" class="tab-content">
             <div class="container">
                 <div class="section">
-                    <h2>قائد الفوج</h2>
+                    <h2>قيادة الفوج المتميزة</h2>
                     
                     <div class="highlight-box">
-                        <h3>من هو قائد الفوج؟</h3>
-                        <p>قائد الفوج هو المسؤول الأول عن الجمعية أو المنطقة وكل ما هو خارج نطاق الفوج.</p>
+                        <h3>رؤية استراتيجية للقيادة</h3>
+                        <p>قائد الفوج هو الرؤية والإلهام، المسؤول الأول عن توجيه الجمعية نحو التميز والارتقاء بالعمل الكشفي إلى آفاق جديدة من النجاح والإبداع</p>
                     </div>
 
                     <div class="accordion">
                         <div class="accordion-item">
                             <div class="accordion-header">
-                                <h3>صفات قائد الفوج</h3>
+                                <h3>المؤهلات الأساسية للقائد المتميز</h3>
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                             <div class="accordion-content">
                                 <ul>
-                                    <li>يعرف أنظمة الجمعية أو أنظمة الوحدات</li>
-                                    <li>يعرف مناهج الوحدات بشكل عام</li>
-                                    <li>يعرف الصول والتقاليد الكشفية</li>
-                                    <li>يعرف دوره وحدود صلاحياته في الفوج أو الجمعية</li>
+                                    <li><strong>الإتقان التنظيمي:</strong> فهم عميق لأنظمة الجمعية ولوائح الوحدات الداخلية والخارجية</li>
+                                    <li><strong>الخبرة المنهجية:</strong> معرفة شاملة بمناهج التدريب والتطوير لجميع المراحل العمرية</li>
+                                    <li><strong>الأصالة الكشفية:</strong> التمكن من التقاليد والممارسات الكشفية الأصيلة والمعاصرة</li>
+                                    <li><strong>الوعي بالصلاحيات:</strong> فهم دقيق لحدود المسؤوليات والصلاحيات المخولة</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <div class="accordion-header">
-                                <h3>دور قائد الفوج</h3>
+                                <h3>الأدوار الاستراتيجية للقائد</h3>
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                             <div class="accordion-content">
                                 <ul>
-                                    <li>تعيين قادة الأفراد بحسب الاقتراح والتشاور مع قادة الوحدات</li>
-                                    <li>مراقبة ومتابعة وتأمين الفوج والإمضاء على كل ما يتعلق بها</li>
-                                    <li>إقرار البرنامج السنوي للفوج</li>
-                                    <li>الموافقة على نشاطات الفوج كافة وطلب الرخص من المفوضية العامة عند الحاجة</li>
-                                    <li>يتابع تقدم الأفراد بشكل عام</li>
-                                    <li>يتابع تقدم وتدريب قادة الوحدات بشكل خاص</li>
-                                    <li>يحافظ على علاقة جيدة مع الأهالي</li>
-                                    <li>يحافظ على علاقة جيدة مع فعاليات المنطقة</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2>المهام الواجب معرفتها لقيادة الفوج بنجاح</h2>
-                    
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>تشكيل قيادة الفوج</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <p>عند تعيين قائد الفوج في بداية السنة الكشفية، يقترح تعيين قيادته ويرفعها للمفوض العام للموافقة. إن تشكيل قيادة الفوج هو من أهم القرارات لذلك لحسن سير العمل في الفوج والوصول إلى الهدف.</p>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>إدارة اجتماع قيادة الفوج</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <p>الهدف من اجتماع قيادة الفوج هو عرض المشاريع، أخذ الموافقات، طرح المقترحات، تحديد المسؤوليات، أخذ التعليمات بالتفويض من الجمعية أو قراءة البريد الداخلي والخارجي.</p>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>وضع البرنامج السنوي</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <p>البرنامج السنوي هو تنظيم للمشاريع والنشاطات ضمن إطار محدد، حيث يعين فيه التواريخ ويتم توزيع العمل والتحضير المسبق.</p>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>تحضير وإدارة المخيمات</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <p>المخيم هو النشاط الكشفي الوحيد حيث يتعلم الأفراد منه بشكل مباشر. مهما كان نوع المخيم، يجب أن يكون هناك برنامج محدد، نظام مخيم، تعيين قيادة المخيم وغيرها من المهام.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gatherings Tab -->
-        <div id="gatherings" class="tab-content">
-            <div class="container">
-                <div class="section">
-                    <h2>إدارة التجمعات الكبرى</h2>
-                    
-                    <div class="highlight-box">
-                        <h3>ما هي التجمعات الكبرى؟</h3>
-                        <p>التجمعات الكشفية الكبرى هي أحداث أو مخيمات كبيرة تنظمها الحركة الكشفية على مستوى وطني أو دولي</p>
-                    </div>
-
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>أنواع التجمعات الكبرى</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li><strong>التجمع العالمي للكشافة:</strong> أكبر حدث كشفي عالمي، يعقد كل أربع سنوات</li>
-                                    <li><strong>مخيم السلام الكشفي:</strong> يجمع الكشافة من دول مختلفة لتعزيز قيم السلام</li>
-                                    <li><strong>المؤتمر العالمي للكشافة:</strong> لمناقشة السياسات والإستراتيجيات الكشفية</li>
-                                    <li><strong>المخيم الكشفي العربي:</strong> حدث إقليمي للكشافة العرب</li>
-                                    <li><strong>مخيمات وطنية:</strong> تنظمها كل دولة على حدة</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>أهداف التجمعات الكبرى</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li><strong>تنمية الشخصية:</strong> تعزيز الثقة بالنفس وتعليم المهارات القيادية</li>
-                                    <li><strong>تطوير المهارات العملية:</strong> تنمية المهارات الحياتية والقدرات البدنية</li>
-                                    <li><strong>تعزيز قيم التعاون والمواطنة:</strong> تشجيع العمل الجماعي والخدمة المجتمعية</li>
-                                    <li><strong>تعزيز السلام والتفاهم بين الثقافات:</strong> التعارف بين الثقافات المختلفة</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>التحديات الرئيسية</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li><strong>التخطيط والتحضير:</strong> تحديد الأهداف والحصول على التراخيص</li>
-                                    <li><strong>التنظيم اللوجستي:</strong> تأمين الموقع والنقل والإمدادات</li>
-                                    <li><strong>التعامل مع الحشود الكبيرة:</strong> الأمن والسلامة وإدارة الأزمات</li>
-                                    <li><strong>إدارة الأنشطة:</strong> تنوع الأنشطة والتنسيق بين الفعاليات</li>
-                                    <li><strong>التواصل والتنسيق:</strong> بين الفرق التنظيمية والمشاركين</li>
-                                    <li><strong>التمويل والميزانية:</strong> إدارة التكاليف والبحث عن الرعاة</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Commissioner Tab -->
-        <div id="commissioner" class="tab-content">
-            <div class="container">
-                <div class="section">
-                    <h2>مفوض الحلقة</h2>
-                    
-                    <div class="highlight-box">
-                        <h3>من هو مفوض الحلقة؟</h3>
-                        <p>هو المسؤول عن الإشراف والتفتيش والتوجيه على الوحدات التابعة لفرعه</p>
-                    </div>
-
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>أنواع المفوضين</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li>المفوض العام</li>
-                                    <li>نائب المفوض العام</li>
-                                    <li>مفوض تنمية القيادات</li>
-                                    <li>مفوض تنمية المراحل</li>
-                                    <li>المفوض الإداري</li>
-                                    <li>مفوضي الاختصاص</li>
-                                    <li>مفوضي الحلقات</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>صفات مفوض الحلقة</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li><strong>قيادي:</strong> يمتلك القدرة على القيادة وتحفيز الآخرين</li>
-                                    <li><strong>منظم:</strong> يجيد التخطيط والتنظيم للأحداث والأنشطة</li>
-                                    <li><strong>اجتماعي:</strong> يمتلك مهارات التواصل الجيدة</li>
-                                    <li><strong>تحليلي:</strong> قادر على تقييم المواقف واتخاذ القرارات</li>
-                                    <li><strong>إيجابي:</strong> يستطيع تحفيز الكشافين والقادة</li>
-                                    <li><strong>مرن:</strong> يستطيع التكيف مع التغييرات والظروف المختلفة</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <h3>المهام الرئيسية</h3>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li><strong>التخطيط والتوجيه:</strong> إعداد خطط سنوية للأنشطة والبرامج الكشفية</li>
-                                    <li><strong>الإشراف والمتابعة:</strong> زيارة الوحدات الكشفية بانتظام</li>
-                                    <li><strong>التقييم والتحفيز:</strong> تقييم أداء الوحدات الكشفية والقادة</li>
-                                    <li><strong>التدريب والتطوير:</strong> تنظيم ندوات وورش عمل للقادة</li>
-                                    <li><strong>التواصل والتنسيق:</strong> التواصل المستمر مع القادة</li>
-                                    <li><strong>إدارة الأنشطة:</strong> تنظيم وإدارة الأنشطة الكشفية الكبرى</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        // Navigation functionality
-        const navLinks = document.querySelectorAll('.nav-link');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const hamburger = document.getElementById('hamburger');
-        const navLinksContainer = document.getElementById('navLinks');
-        const cards = document.querySelectorAll('.card[data-tab]');
-
-        // Tab switching function
-        function switchTab(tabId) {
-            // Hide all tabs
-            tabContents.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all nav links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show selected tab
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                setTimeout(() => {
-                    selectedTab.classList.add('active');
-                }, 100);
-            }
-            
-            // Add active class to clicked nav link
-            const activeLink = document.querySelector(`[data-tab="${tabId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-
-            // Close mobile menu
-            navLinksContainer.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-
-        // Add event listeners to navigation links
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tabId = link.getAttribute('data-tab');
-                switchTab(tabId);
-            });
-        });
-
-        // Add event listeners to cards
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const tabId = card.getAttribute('data-tab');
-                switchTab(tabId);
-            });
-        });
-
-        // Hamburger menu functionality
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinksContainer.classList.toggle('active');
-        });
-
-        // Accordion functionality
-        document.addEventListener('click', (e) => {
+                                    <li><strong>إدارة المواهب:</strong> اكتشاف وتطوير قادة الأفراد من خلال التقييم المستمر والتوجيه الفردي</li>
+                                    <li><strong>الإشراف الشامل:</strong> مراقبة ومتابعة شاملة لجميع أنشطة الفوج مع ضمان الجودة والتطو
