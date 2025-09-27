@@ -4,205 +4,162 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>دورات الكشافة التفاعلية</title>
+  <meta name="theme-color" content="#800020" />
+  <title>حصص دورة قائد متقدم</title>
 
-  <!-- Performance: Preconnect & Fonts -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
 
   <style>
-    :root {
-      --primary-0: #0f1f10;
-      --primary-1: #183018;
-      --primary-2: #224525;
-      --primary-3: #2d5a34;
-      --primary-4: #3b7550;
-      --mint: #a4c3b2;
-      --gold: #d4af37;
-      --glass: rgba(255, 255, 255, 0.08);
-      --glass-strong: rgba(255, 255, 255, 0.14);
-      --glass-border: rgba(255, 255, 255, 0.18);
-      --text-strong: #0d1b0e;
-      --text: #243b2a;
-      --bg-grad: linear-gradient(135deg, #0b180c 0%, #17341b 35%, #2c5a3a 65%, #5f8d71 100%);
-      --elev-1: 0 6px 24px rgba(0, 0, 0, 0.18);
-      --elev-2: 0 14px 48px rgba(0, 0, 0, 0.24);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --radius-pill: 999px;
-      --speed: 280ms cubic-bezier(.2,.8,.2,1);
-      --container: min(1120px, 92vw);
+    :root{
+      /* Burgundy theme */
+      --burgundy-1:#24060f;
+      --burgundy-2:#4a0d1f;
+      --burgundy-3:#800020; /* main */
+      --burgundy-4:#9c2741;
+      --burgundy-5:#c44569;
+      --gold:#d4af37;
+
+      --bg-grad:linear-gradient(135deg,var(--burgundy-1) 0%,var(--burgundy-2) 35%,var(--burgundy-3) 65%,var(--burgundy-5) 100%);
+      --glass:rgba(255,255,255,.08);
+      --glass-strong:rgba(255,255,255,.14);
+      --glass-border:rgba(255,255,255,.18);
+
+      --text-dark:#2a0e1a;
+      --text:#3b1a26;
+
+      --elev-1:0 6px 24px rgba(0,0,0,.18);
+      --elev-2:0 14px 48px rgba(0,0,0,.24);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-pill:999px;
+      --speed:280ms cubic-bezier(.2,.8,.2,1);
+      --container:min(1120px,92vw);
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-
-    body {
-      margin: 0;
-      font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg-grad) fixed;
-      color: #fff;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg-grad) fixed;
+      color:#fff;
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
     }
+    .container{width:var(--container);margin-inline:auto;padding-inline:clamp(12px,3vw,24px)}
 
-    .texture::before {
-      content: "";
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 0;
-      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: soft-light;
-    }
-
-    .container { width: var(--container); margin-inline: auto; padding-inline: clamp(12px, 3vw, 24px); }
-
-    /* Progress bar */
-    .scroll-progress { position: fixed; inset-block-start: 0; inset-inline-start: 0; height: 3px; width: 0; z-index: 9999; background: linear-gradient(90deg, var(--gold), #ffe17a); transition: width .15s ease; }
+    /* Progress */
+    .scroll-progress{position:fixed;inset-block-start:0;inset-inline-start:0;height:3px;width:0;z-index:9999;background:linear-gradient(90deg,var(--gold),#ffe17a);transition:width .15s ease}
 
     /* Header */
-    header {
-      position: sticky; top: 0; z-index: 1000;
-      backdrop-filter: blur(16px) saturate(140%);
-      background: color-mix(in oklab, #0c1a0d 85%, transparent);
-      border-bottom: 1px solid var(--glass-border);
-      box-shadow: var(--elev-1);
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(16px) saturate(140%);background:rgba(20,5,12,.7);border-bottom:1px solid var(--glass-border);box-shadow:var(--elev-1)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding-block:14px}
+    .brand{display:inline-flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none}
+    .brand i{font-size:1.6rem;background:linear-gradient(40deg,var(--gold),#ffe17a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .brand span{font-weight:800;letter-spacing:.2px;font-size:clamp(1.05rem,2.4vw,1.25rem)}
+
+    .links{display:flex;gap:6px;align-items:center}
+    .link{border:1px solid var(--glass-border);background:var(--glass);color:#fff;text-decoration:none;padding:.65rem 1rem;border-radius:var(--radius-pill);font-weight:700;font-size:.95rem;transition:transform var(--speed),background var(--speed),border-color var(--speed);position:relative;overflow:hidden}
+    .link:hover{transform:translateY(-1px);border-color:var(--gold);box-shadow:0 8px 26px rgba(212,175,55,.25)}
+    .link.active{background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(255,235,158,.1));border-color:var(--gold)}
+
+    .hamburger{display:none;border:1px solid var(--glass-border);background:var(--glass);border-radius:12px;padding:.5rem .65rem;cursor:pointer}
+    .hamburger i{font-size:1.2rem}
+
+    /* Sections */
+    main{position:relative;z-index:1}
+    .hero{text-align:center;padding-block:clamp(48px,10vw,120px)}
+    .hero h1{font-size:clamp(1.6rem,4.2vw,3rem);margin:0 0 6px;font-weight:800;letter-spacing:.3px;background:linear-gradient(135deg,#fff,var(--gold),#fff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .byline{margin:4px 0 10px;opacity:.95;font-weight:800}
+    .hero p{margin:0;font-size:clamp(1rem,2.4vw,1.25rem);opacity:.92}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,2.4vw,24px);margin-block-start:28px}
+    .card{
+      grid-column:span 4;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-xl);
+      padding:clamp(18px,2.6vw,28px);box-shadow:var(--elev-1);transition:transform var(--speed),box-shadow var(--speed),border-color var(--speed),background var(--speed);
+      color:#fff;text-align:center;cursor:pointer;position:relative;overflow:hidden;isolation:isolate
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; }
-    .brand { display: inline-flex; align-items: center; gap: .6rem; color: #fff; text-decoration: none; }
-    .brand i { font-size: 1.6rem; background: linear-gradient(40deg, var(--gold), #ffe17a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .brand span { font-weight: 800; letter-spacing: .2px; font-size: clamp(1.05rem, 2.4vw, 1.25rem); }
+    .card::after{content:"";position:absolute;inset:-1px;background:radial-gradient(600px 120px at var(--x,50%) var(--y,50%),rgba(255,255,255,.08),transparent 40%);z-index:-1}
+    .card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:var(--elev-2)}
+    .card i{font-size:clamp(2rem,4.5vw,3rem);display:inline-block;margin-bottom:12px;background:linear-gradient(45deg,var(--gold),#ffe17a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .card h3{margin:6px 0 8px;font-weight:800;font-size:clamp(1.05rem,2.6vw,1.35rem)}
+    .card p{margin:0;opacity:.9;font-weight:400;font-size:.98rem}
 
-    .links { display: flex; gap: 6px; align-items: center; }
-    .link { appearance: none; border: 1px solid var(--glass-border); background: var(--glass); color: #fff; text-decoration: none; padding: .65rem 1rem; border-radius: var(--radius-pill); font-weight: 600; font-size: .95rem; transition: transform var(--speed), background var(--speed), border-color var(--speed); position: relative; overflow: hidden; }
-    .link:hover { transform: translateY(-1px); border-color: var(--gold); box-shadow: 0 8px 26px rgba(212, 175, 55, 0.25); }
-    .link.active { background: linear-gradient(135deg, rgba(212,175,55,.15), rgba(255, 235, 158, .1)); border-color: var(--gold); }
+    .section{display:none}
+    .section.active{display:block}
 
-    .hamburger { display: none; border: 1px solid var(--glass-border); background: var(--glass); border-radius: 12px; padding: .5rem .65rem; cursor: pointer; }
-    .hamburger i { font-size: 1.2rem; }
+    .surface{margin-block:28px clamp(40px,8vw,64px);background:#fff;color:var(--text);border-radius:var(--radius-xl);border:1px solid rgba(255,255,255,.35);box-shadow:var(--elev-2);overflow:hidden}
+    .surface-header{padding:clamp(20px,3vw,28px);background:linear-gradient(120deg,#ffffff,#fff5f8);border-bottom:1px solid #f2e7ec}
+    .surface-header h2{margin:0;color:var(--text-dark);font-weight:800;font-size:clamp(1.3rem,3.4vw,2rem);letter-spacing:.2px}
+    .surface-body{padding:clamp(18px,3vw,28px)}
 
-    /* Main sections */
-    main { position: relative; z-index: 1; }
-    .hero { text-align: center; padding-block: clamp(48px, 10vw, 120px); }
-    .hero h1 { font-size: clamp(1.6rem, 4.2vw, 3rem); margin: 0 0 10px; font-weight: 800; letter-spacing: .3px; background: linear-gradient(135deg, #fff, var(--gold), #fff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { margin: 0; font-size: clamp(1rem, 2.4vw, 1.25rem); opacity: .9; }
+    .highlight{position:relative;border-radius:var(--radius-lg);padding:clamp(18px,2.8vw,26px);background:linear-gradient(45deg,var(--burgundy-4),var(--burgundy-3));color:#fff;box-shadow:var(--elev-1);overflow:hidden;isolation:isolate;margin-block:10px 18px}
+    .highlight::before{content:"";position:absolute;inset:-100% -40% auto -40%;height:220%;background:conic-gradient(from 45deg,transparent,rgba(212,175,55,.18),transparent 30%);animation:spin 10s linear infinite;opacity:.7;z-index:-1;pointer-events:none}
+    .highlight h3{margin:0 0 6px;font-weight:800;font-size:clamp(1.05rem,2.8vw,1.4rem)}
+    .highlight p{margin:0;opacity:.98}
 
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(14px, 2.4vw, 24px); margin-block-start: 28px; }
+    /* Accordion (native details/summary) */
+    .accordion{display:grid;gap:12px;margin-block:16px}
+    details.acc-item{background:#fff;border:1px solid #f1e6ea;border-radius:16px;overflow:clip;box-shadow:0 2px 16px rgba(0,0,0,.04)}
+    summary.acc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;background:linear-gradient(180deg,#fff7fa,#ffffff);cursor:pointer;list-style:none}
+    summary.acc-head h3{margin:0;font-size:1.05rem;color:var(--text-dark);font-weight:800}
+    summary.acc-head i{transition:transform var(--speed)}
+    details[open] summary.acc-head i{transform:rotate(180deg)}
+    .acc-body{max-height:0;overflow:hidden;transition:max-height var(--speed)}
+    details[open] .acc-body{max-height:1000px}
+    .acc-body-inner{padding:0 18px 18px}
 
-    .card {
-      grid-column: span 4;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: clamp(18px, 2.6vw, 28px);
-      box-shadow: var(--elev-1);
-      transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed), background var(--speed);
-      color: #fff; text-align: center; cursor: pointer; position: relative; overflow: hidden;
-      isolation: isolate;
+    ul.clean{list-style:none;margin:0;padding:0}
+    ul.clean li{border-inline-start:4px solid var(--burgundy-3);padding:14px 14px;margin:10px 0;border-radius:10px;background:#fff6f9}
+    ul.clean li strong{color:var(--burgundy-2)}
+
+    footer{color:#ffeaf1;opacity:.9;text-align:center;padding:28px 16px 48px;font-size:.95rem}
+
+    /* Loading */
+    .loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg-grad);z-index:2000;transition:opacity .6s ease,visibility .6s ease}
+    .loading.hide{opacity:0;visibility:hidden}
+    .spinner{inline-size:56px;block-size:56px;border-radius:50%;border:3px solid transparent;border-top-color:var(--gold);border-right-color:var(--gold);animation:spin 1s linear infinite}
+
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Mobile */
+    @media (max-width:900px){
+      .card{grid-column:span 6}
+      .links{display:none}
+      .hamburger{display:inline-grid;place-items:center}
+      .sheet{position:fixed;inset-inline:clamp(10px,3vw,16px);inset-block-start:70px;background:rgba(20,5,12,.9);border:1px solid var(--glass-border);border-radius:16px;box-shadow:var(--elev-2);padding:10px;display:none}
+      .sheet .link{display:block;width:100%;text-align:center;margin-block:6px}
+      .sheet.open{display:block}
     }
-    .card::after { content: ""; position: absolute; inset: -1px; background: radial-gradient(600px 120px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.08), transparent 40%); z-index: -1; }
-    .card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: var(--elev-2); }
-    .card i { font-size: clamp(2rem, 4.5vw, 3rem); display: inline-block; margin-bottom: 12px; background: linear-gradient(45deg, var(--gold), #ffe17a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .card h3 { margin: 6px 0 8px; font-weight: 800; font-size: clamp(1.05rem, 2.6vw, 1.35rem); }
-    .card p { margin: 0; opacity: .9; font-weight: 400; font-size: .98rem; }
-
-    /* Section (content tabs) */
-    .section { display: none; }
-    .section.active { display: block; }
-
-    .surface {
-      margin-block: 28px clamp(40px, 8vw, 64px);
-      background: #ffffffe6;
-      color: var(--text);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,.35);
-      box-shadow: var(--elev-2);
-      overflow: hidden;
+    @media (max-width:640px){
+      .card{grid-column:span 12}
+      .hero{padding-block:40px 10px}
     }
-    .surface-header { padding: clamp(20px, 3vw, 28px); background: linear-gradient(120deg, #ffffff, #fafdf9); border-bottom: 1px solid #eef3ee; }
-    .surface-header h2 { margin: 0; color: var(--text-strong); font-weight: 800; font-size: clamp(1.3rem, 3.4vw, 2rem); letter-spacing: .2px; }
-
-    .surface-body { padding: clamp(18px, 3vw, 28px); }
-
-    .highlight {
-      position: relative; border-radius: var(--radius-lg);
-      padding: clamp(18px, 2.8vw, 26px);
-      background: linear-gradient(45deg, color-mix(in oklab, var(--primary-4) 88%, white 12%), color-mix(in oklab, var(--primary-3) 88%, white 12%));
-      color: #fff; box-shadow: var(--elev-1);
-      overflow: hidden; isolation: isolate; margin-block: 10px 18px;
-    }
-    .highlight::before {
-      content: ""; position: absolute; inset: -100% -40% auto -40%; height: 220%;
-      background: conic-gradient(from 45deg, transparent, rgba(212,175,55,.15), transparent 30%);
-      animation: spin 10s linear infinite; opacity: .7; z-index: -1; pointer-events: none;
-    }
-    .highlight h3 { margin: 0 0 6px; font-weight: 800; font-size: clamp(1.05rem, 2.8vw, 1.4rem); }
-    .highlight p { margin: 0; opacity: .95; }
-
-    /* Accordion */
-    .accordion { display: grid; gap: 12px; margin-block: 16px; }
-    .acc-item { background: #fff; border: 1px solid #eef2ee; border-radius: var(--radius-lg); overflow: clip; box-shadow: 0 2px 16px rgba(0,0,0,.04); }
-    .acc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px; background: linear-gradient(180deg, #f9fcf9, #ffffff); cursor: pointer; }
-    .acc-head h3 { margin: 0; font-size: 1.05rem; color: var(--text-strong); font-weight: 800; }
-    .acc-head i { transition: transform var(--speed); }
-    .acc-body { max-height: 0; overflow: hidden; transition: max-height var(--speed); }
-    .acc-body-inner { padding: 0 18px 18px; }
-
-    .acc-item[open] .acc-head i { transform: rotate(180deg); }
-    .acc-item[open] .acc-body { max-height: 900px; }
-
-    ul.clean { list-style: none; margin: 0; padding: 0; }
-    ul.clean li { position: relative; border-inline-start: 4px solid var(--primary-3); padding: 14px 14px; margin: 10px 0; border-radius: 10px; background: #f8fbf9; }
-    ul.clean li strong { color: var(--primary-2); }
-
-    /* Footer */
-    footer { color: #e9f4ee; opacity: .85; text-align: center; padding: 28px 16px 48px; font-size: .95rem; }
-
-    /* Loading overlay */
-    .loading { position: fixed; inset: 0; display: grid; place-items: center; background: var(--bg-grad); z-index: 2000; transition: opacity .6s ease, visibility .6s ease; }
-    .loading.hide { opacity: 0; visibility: hidden; }
-    .spinner { inline-size: 56px; block-size: 56px; border-radius: 50%; border: 3px solid transparent; border-top-color: var(--gold); border-right-color: var(--gold); animation: spin 1s linear infinite; }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Mobile tweaks */
-    @media (max-width: 900px) {
-      .card { grid-column: span 6; }
-      .links { display: none; }
-      .hamburger { display: inline-grid; place-items: center; }
-      .sheet { position: fixed; inset-inline: clamp(10px, 3vw, 16px); inset-block-start: 70px; background: color-mix(in oklab, #0c1a0d 85%, transparent); border: 1px solid var(--glass-border); border-radius: 16px; box-shadow: var(--elev-2); padding: 10px; display: none; }
-      .sheet .link { display: block; width: 100%; text-align: center; margin-block: 6px; }
-      .sheet.open { display: block; }
-    }
-    @media (max-width: 640px) {
-      .card { grid-column: span 12; }
-      .hero { padding-block: 40px 10px; }
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .card, .link, .acc-body { transition: none; }
-      .highlight::before { animation: none; }
+    @media (prefers-reduced-motion:reduce){
+      .card,.link,.acc-body{transition:none}
+      .highlight::before{animation:none}
     }
   </style>
 </head>
-<body class="texture">
+<body>
   <!-- Loading -->
   <div class="loading" id="loading"><div class="spinner" aria-hidden="true"></div></div>
 
-  <!-- Progress bar -->
+  <!-- Progress -->
   <div class="scroll-progress" id="progress"></div>
 
+  <!-- Header -->
   <header>
     <div class="container nav">
       <a class="brand" href="#home" aria-label="الانتقال إلى الرئيسية">
         <i class="fa-solid fa-mountain"></i>
-        <span>أكاديمية الكشافة المتقدمة</span>
+        <span>حصص دورة قائد متقدم</span>
       </a>
 
       <nav class="links" aria-label="التنقل الرئيسي">
@@ -212,7 +169,9 @@
         <a class="link" data-tab="commissioner" href="#commissioner">مفوض الحلقة</a>
       </nav>
 
-      <button class="hamburger" id="menuBtn" aria-label="فتح قائمة التنقل" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <button class="hamburger" id="menuBtn" aria-label="فتح قائمة التنقل" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
 
     <!-- Mobile sheet -->
@@ -231,15 +190,16 @@
     <section class="section active" id="home" role="region" aria-labelledby="home-title">
       <div class="container">
         <div class="hero">
-          <h1 id="home-title">مرحباً بك في أكاديمية الكشافة المتقدمة</h1>
-          <p>رحلة قيادية حديثة، مبنية على مناهج عالمية، ومصمّمة لتعمل بسلاسة على الهاتف.</p>
+          <h1 id="home-title">مرحباً بك في حصص دورة قائد متقدم</h1>
+          <p class="byline">القائد داني شاهين</p>
+          <p>فيما يلي ملخّص شامل للحصص التي فاتتني.</p>
         </div>
 
         <div class="grid">
           <article class="card" data-tab="leader" tabindex="0" aria-label="الانتقال إلى قائد الفوج">
             <i class="fa-solid fa-crown"></i>
             <h3>قائد الفوج</h3>
-            <p>مسار احترافي لبناء الرؤية، إدارة الفرق، وضمان الجودة على مستوى الفوج.</p>
+            <p>بناء الرؤية، تشكيل القيادة، ومعايير الجودة على مستوى الفوج.</p>
           </article>
 
           <article class="card" data-tab="gatherings" tabindex="0" aria-label="الانتقال إلى التجمعات الكبرى">
@@ -251,7 +211,7 @@
           <article class="card" data-tab="commissioner" tabindex="0" aria-label="الانتقال إلى مفوض الحلقة">
             <i class="fa-solid fa-chess-king"></i>
             <h3>مفوض الحلقة</h3>
-            <p>كفايات الإشراف والحوكمة والمتابعة مع مؤشرات أداء قابلة للقياس.</p>
+            <p>حوكمة إشرافية، متابعة منهجية، وتمكين القادة.</p>
           </article>
         </div>
       </div>
@@ -266,41 +226,62 @@
           </div>
           <div class="surface-body">
             <div class="highlight">
-              <h3>رؤية استراتيجية للقيادة</h3>
-              <p>قائد الفوج هو بوصلة الإلهام. يقود التخطيط، يبني الثقافة، ويضمن الاستدامة والتطوير المستمر.</p>
+              <h3>رؤية واستراتيجية</h3>
+              <p>قائد الفوج هو بوصلة الإلهام. يقود التخطيط، يبني الثقافة، ويضمن الاستدامة عبر الحوكمة والتطوير المستمر.</p>
             </div>
 
             <div class="accordion" id="leader-acc">
               <details class="acc-item">
                 <summary class="acc-head" role="button" aria-expanded="false">
-                  <h3>المؤهلات الأساسية للقائد المتميز</h3>
+                  <h3>المؤهلات الأساسية</h3>
                   <i class="fa-solid fa-chevron-down"></i>
                 </summary>
                 <div class="acc-body" aria-hidden="true">
                   <div class="acc-body-inner">
                     <ul class="clean">
-                      <li><strong>الإتقان التنظيمي:</strong> فهم أنظمة الجمعية ولوائح الوحدات وآليات الحوكمة.</li>
-                      <li><strong>الخبرة المنهجية:</strong> دراية بمناهج التدريب لكل مرحلة عمرية وخطط التدرّج.</li>
-                      <li><strong>الأصالة الكشفية:</strong> التوازن بين التقاليد الأصيلة والابتكار المعاصر.</li>
-                      <li><strong>الوعي بالصلاحيات:</strong> تحديد المسؤوليات، التفويض الذكي، وإدارة المخاطر.</li>
+                      <li><strong>إتقان الأنظمة:</strong> معرفة أنظمة الجمعية ولوائح الوحدات وحدود الصلاحيات.</li>
+                      <li><strong>خبرة منهجية:</strong> دراية بالمناهج لكل المراحل وخطط التدرّج والتدريب.</li>
+                      <li><strong>أصالة كشفية:</strong> التوازن بين التقاليد الأصيلة والابتكار المعاصر.</li>
+                      <li><strong>إدارة المخاطر:</strong> تحديد مسؤوليات واضحة، تفويض ذكي، واستجابة فعّالة.</li>
                     </ul>
+                    <!-- :contentReference[oaicite:0]{index=0} -->
                   </div>
                 </div>
               </details>
 
               <details class="acc-item">
-                <summary class="acc-head" role="button" aria-expanded="false">
-                  <h3>الأدوار الاستراتيجية للقائد</h3>
+                <summary class="acc-head">
+                  <h3>المهام القيادية</h3>
                   <i class="fa-solid fa-chevron-down"></i>
                 </summary>
-                <div class="acc-body" aria-hidden="true">
+                <div class="acc-body">
                   <div class="acc-body-inner">
                     <ul class="clean">
-                      <li><strong>إدارة المواهب:</strong> استقطاب، تمكين، ومسارات نمو فردية للقادة.</li>
-                      <li><strong>الإشراف الشامل:</strong> مراقبة الأنشطة بمؤشرات أداء وخطط تحسين.</li>
-                      <li><strong>الشراكات:</strong> تفعيل علاقات المجتمع والداعمين بذكاء استراتيجي.</li>
-                      <li><strong>السلامة والامتثال:</strong> بروتوكولات واضحة وإدارة أزمات فعّالة.</li>
+                      <li><strong>تشكيل القيادة:</strong> اقتراح وتعيين القادة بالتشاور وإدارة اجتماعات قيادة الفوج.</li>
+                      <li><strong>البرنامج السنوي:</strong> وضع برنامج مدروس مع توزيع التواريخ والتحضير المسبق.</li>
+                      <li><strong>إدارة العلاقات:</strong> بناء علاقات مع المدرسة/الكنيسة/البلدية والداعمين.</li>
+                      <li><strong>توزيع المهام والرقابة:</strong> تمكين القادة، متابعة التنفيذ، والتصحيح عند الحاجة.</li>
+                      <li><strong>الميزانية:</strong> دراسة التكاليف، تحديد مصادر التمويل، وتعيين مسؤوليات الصرف.</li>
+                      <li><strong>المخيمات:</strong> التحضير، نظام المخيم، لوائح الطعام والتجهيزات، وتحديد المسؤوليات.</li>
                     </ul>
+                    <!-- :contentReference[oaicite:1]{index=1} -->
+                  </div>
+                </div>
+              </details>
+
+              <details class="acc-item">
+                <summary class="acc-head">
+                  <h3>نصائح تنفيذية للمخيم</h3>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </summary>
+                <div class="acc-body">
+                  <div class="acc-body-inner">
+                    <ul class="clean">
+                      <li><strong>جاهزية اللوائح:</strong> نظام المخيم، قوائم التجهيزات والطعام، جدول المهام والمسؤوليات.</li>
+                      <li><strong>رحلة المشارك:</strong> برنامج يومي واضح ولافتات معلوماتية ومكان للّوحات.</li>
+                      <li><strong>تفويض حازم:</strong> تحديد صاحب القرار لكل موقف لمنع التداخل.</li>
+                    </ul>
+                    <!-- :contentReference[oaicite:2]{index=2} -->
                   </div>
                 </div>
               </details>
@@ -319,30 +300,39 @@
           </div>
           <div class="surface-body">
             <div class="highlight">
-              <h3>منهجية جاهزة للتنفيذ</h3>
-              <p>من تحديد الأهداف إلى تجربة المشاركين: إطار تشغيلي متكامل لتخطيط وتنفيذ فعاليات رفيعة المستوى.</p>
+              <h3>تعريف وأمثلة</h3>
+              <p>الأحداث/المخيمات الوطنية والدولية التي تجمع آلاف الكشافة (جامبوري عالمي، مخيم السلام، المؤتمر العالمي، المخيم العربي، المخيمات الوطنية).</p>
+              <!-- :contentReference[oaicite:3]{index=3} -->
             </div>
 
             <div class="accordion">
               <details class="acc-item">
-                <summary class="acc-head"><h3>التخطيط اللوجستي</h3><i class="fa-solid fa-chevron-down"></i></summary>
+                <summary class="acc-head"><h3>الأهداف والتأثير</h3><i class="fa-solid fa-chevron-down"></i></summary>
                 <div class="acc-body"><div class="acc-body-inner">
                   <ul class="clean">
-                    <li><strong>خرائط الموقع:</strong> تدفقات الحركة، نقاط الطوارئ، ومناطق الخدمات.</li>
-                    <li><strong>سلاسل التوريد:</strong> جداول دقيقة للموردين والبدائل.</li>
-                    <li><strong>إدارة المتطوعين:</strong> توصيف أدوار، جداول نوبات، وأدوات تواصل.</li>
+                    <li><strong>تنمية الشخصية:</strong> الثقة بالنفس، القيادة، إلهام الآخرين.</li>
+                    <li><strong>مهارات عملية:</strong> إسعافات أولية، طهي ميداني، الاعتماد على النفس.</li>
+                    <li><strong>المواطنة والتعاون:</strong> خدمة المجتمع، الاستدامة، حب الوطن.</li>
+                    <li><strong>السلام والتفاهم:</strong> التعارف بين الثقافات وبناء جسور التواصل.</li>
                   </ul>
+                  <!-- :contentReference[oaicite:4]{index=4} -->
                 </div></div>
               </details>
 
               <details class="acc-item">
-                <summary class="acc-head"><h3>التجربة والبرنامج</h3><i class="fa-solid fa-chevron-down"></i></summary>
+                <summary class="acc-head"><h3>التحديات وخطة الاستجابة</h3><i class="fa-solid fa-chevron-down"></i></summary>
                 <div class="acc-body"><div class="acc-body-inner">
                   <ul class="clean">
-                    <li><strong>رحلة المشارك:</strong> محطات تفاعلية، قياس الرضا، وخطط تحسين فورية.</li>
-                    <li><strong>السلامة والصحة:</strong> إسعاف أولي، إدارة حرارة/طقس، وبطاقات طوارئ.</li>
-                    <li><strong>التواصل:</strong> خطة إعلامية مسبقة ووحدة اتصال أثناء الحدث.</li>
+                    <li><strong>التخطيط المسبق:</strong> أهداف واضحة، تراخيص، فرق عمل وتوزيع مهام.</li>
+                    <li><strong>اللوجستيات:</strong> موقع وبنية تحتية، نقل وإمداد، إدارة حشود وأمن.</li>
+                    <li><strong>الرعاية الصحية والطوارئ:</strong> فرق طبية وخطط أزمات وسيناريوهات طقس.</li>
+                    <li><strong>تنسيق البرنامج:</strong> تنوّع الأنشطة وتجنّب التداخل والازدحام.</li>
+                    <li><strong>التمويل:</strong> ضبط الميزانية، رعاة وتبرعات.</li>
+                    <li><strong>التنوع الثقافي واللغوي:</strong> احترام العادات وحلول ترجمة.</li>
+                    <li><strong>البيئة والاستدامة:</strong> إدارة النفايات وتقليل البلاستيك.</li>
+                    <li><strong>التقييم:</strong> جمع الملاحظات ومراجعة الأداء للتحسين المستقبلي.</li>
                   </ul>
+                  <!-- :contentReference[oaicite:5]{index=5} -->
                 </div></div>
               </details>
             </div>
@@ -360,30 +350,51 @@
           </div>
           <div class="surface-body">
             <div class="highlight">
-              <h3>حوكمة وإشراف فعّال</h3>
-              <p>تمكين المفوض بالأدوات القيادية لرفع الأداء عبر وحدات الحلقة وضمان الالتزام بالمعايير.</p>
+              <h3>من هو المفوض؟</h3>
+              <p>حلقة وصل بين القيادة العليا والوحدات، يضمن تنفيذ البرامج، يدعم القادة، ويرأس مجلس مفوضيته.</p>
+              <!-- :contentReference[oaicite:6]{index=6} -->
             </div>
 
             <div class="accordion">
               <details class="acc-item">
-                <summary class="acc-head"><h3>مجالات التركيز</h3><i class="fa-solid fa-chevron-down"></i></summary>
+                <summary class="acc-head"><h3>الصفات الجوهرية</h3><i class="fa-solid fa-chevron-down"></i></summary>
                 <div class="acc-body"><div class="acc-body-inner">
                   <ul class="clean">
-                    <li><strong>المواءمة الاستراتيجية:</strong> ربط خطط الوحدات بالرؤية العامة.</li>
-                    <li><strong>المتابعة والتقييم:</strong> زيارات ميدانية، تقارير دورية، ولوحة مؤشرات.</li>
-                    <li><strong>التطوير القيادي:</strong> برامج رعاية وتبادل خبرات.</li>
+                    <li><strong>قيادي ومنظّم:</strong> تخطيط دقيق وإدارة وقت وموارد بكفاءة.</li>
+                    <li><strong>تواصل اجتماعي:</strong> بناء علاقات وتحفيز إيجابي.</li>
+                    <li><strong>تحليل وقرار:</strong> حلّ المشكلات واتّخاذ قرارات رشيدة.</li>
+                    <li><strong>مرونة وتكيّف:</strong> الاستجابة للمتغيرات بسرعة.</li>
                   </ul>
+                  <!-- :contentReference[oaicite:7]{index=7} -->
                 </div></div>
               </details>
 
               <details class="acc-item">
-                <summary class="acc-head"><h3>أدوات عملية</h3><i class="fa-solid fa-chevron-down"></i></summary>
+                <summary class="acc-head"><h3>المهام الرئيسية</h3><i class="fa-solid fa-chevron-down"></i></summary>
                 <div class="acc-body"><div class="acc-body-inner">
                   <ul class="clean">
-                    <li><strong>قوالب تقارير:</strong> نماذج معيارية سهلة القياس والمقارنة.</li>
-                    <li><strong>لوائح الامتثال:</strong> تبسيط بنود السلامة والسياسات.</li>
-                    <li><strong>مسارات تصعيد:</strong> إدارة شكاوى ونزاعات بشفافية.</li>
+                    <li><strong>التخطيط والتوجيه:</strong> خطط سنوية بالتنسيق مع قادة الوحدات وتوافق تربوي.</li>
+                    <li><strong>الإشراف والمتابعة:</strong> زيارات دورية، مراقبة الأداء، حلّ الصعوبات.</li>
+                    <li><strong>التقييم والتحفيز:</strong> معايير واضحة، تغذية راجعة، وتقدير الإنجازات.</li>
+                    <li><strong>التدريب والتطوير:</strong> ورش عمل ودعم للقادة الجدد وتطوير مهني مستمر.</li>
+                    <li><strong>التواصل والتنسيق:</strong> تحديثات مستمرة وتمثيل المفوضية في الفعاليات.</li>
+                    <li><strong>إدارة الأنشطة:</strong> تنظيم مخيمات واحتفالات مع ضمان السلامة.</li>
                   </ul>
+                  <!-- :contentReference[oaicite:8]{index=8} -->
+                </div></div>
+              </details>
+
+              <details class="acc-item">
+                <summary class="acc-head"><h3>أنواع المفوضين (نظرة سريعة)</h3><i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="acc-body"><div class="acc-body-inner">
+                  <ul class="clean">
+                    <li><strong>المفوض العام ونائبه:</strong> قيادة المفوضية العامة وتنسيق الأنشطة وتنفيذ التوجيهات.</li>
+                    <li><strong>تنمية القيادات:</strong> برامج تدريبية ومسارات تأهيل للقادة.</li>
+                    <li><strong>تنمية المراحل:</strong> تطبيق المناهج الخاصة بالوحدات ومتابعة التنفيذ.</li>
+                    <li><strong>المفوض الإداري:</strong> ملفات أمانة السر، التجهيزات، والصندوق.</li>
+                    <li><strong>مفوضو الاختصاص:</strong> إعلام، تنمية مجتمع، عضوية، علاقات عامة، إحياء، معلوماتية.</li>
+                  </ul>
+                  <!-- :contentReference[oaicite:9]{index=9} -->
                 </div></div>
               </details>
             </div>
@@ -394,94 +405,75 @@
   </main>
 
   <footer>
-    صُمِّم بعناية لبيئة الجوال وسرعة التحميل — © <span id="year"></span>
+    هذا المحتوى مبني على السنة الكشفية 2025
   </footer>
 
   <script>
-    // Progressive enhancements and fixes
-    (function() {
-      const $ = (sel, root=document) => root.querySelector(sel);
-      const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    (function(){
+      const $=(s,r=document)=>r.querySelector(s);
+      const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+      const loading=$("#loading");
+      const progress=$("#progress");
+      const links=$$(".link");
+      const sections=$$(".section");
+      const cards=$$(".card");
+      const sheet=$("#sheet");
+      const menuBtn=$("#menuBtn");
 
-      const loading = $('#loading');
-      const progress = $('#progress');
-      const links = $$('.link');
-      const sections = $$('.section');
-      const cards = $$('.card');
-      const sheet = $('#sheet');
-      const menuBtn = $('#menuBtn');
-
-      // Ensure year
-      $('#year').textContent = new Date().getFullYear();
-
-      // Loading overlay hide
-      window.addEventListener('load', () => {
-        requestAnimationFrame(() => loading.classList.add('hide'));
-      });
+      // Hide loading once ready
+      window.addEventListener("load",()=>{requestAnimationFrame(()=>loading.classList.add("hide"));});
 
       // Scroll progress
-      document.addEventListener('scroll', () => {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const ratio = max > 0 ? (window.scrollY / max) : 0;
-        progress.style.width = Math.min(100, ratio * 100) + '%';
-      }, { passive: true });
+      document.addEventListener("scroll",()=>{
+        const max=document.documentElement.scrollHeight - window.innerHeight;
+        const ratio=max>0?(window.scrollY/max):0;
+        progress.style.width=Math.min(100,ratio*100)+"%";
+      },{passive:true});
 
-      // Mobile menu sheet
-      menuBtn.addEventListener('click', () => {
-        const open = sheet.classList.toggle('open');
-        menuBtn.setAttribute('aria-expanded', String(open));
+      // Mobile menu
+      menuBtn.addEventListener("click",()=>{
+        const open=sheet.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded",String(open));
       });
-      sheet.addEventListener('click', (e) => { if (e.target.classList.contains('link')) sheet.classList.remove('open'); });
+      sheet.addEventListener("click",(e)=>{ if(e.target.classList.contains("link")) sheet.classList.remove("open"); });
 
-      // Card hover spotlight
-      cards.forEach(card => {
-        card.addEventListener('pointermove', e => {
-          const rect = card.getBoundingClientRect();
-          card.style.setProperty('--x', (e.clientX - rect.left) + 'px');
-          card.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+      // Card spotlight + navigation
+      cards.forEach(card=>{
+        card.addEventListener("pointermove",e=>{
+          const r=card.getBoundingClientRect();
+          card.style.setProperty("--x",(e.clientX-r.left)+"px");
+          card.style.setProperty("--y",(e.clientY-r.top)+"px");
         });
-        // Click/Enter to navigate
-        const go = () => activateTab(card.dataset.tab);
-        card.addEventListener('click', go);
-        card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+        const go=()=>activateTab(card.dataset.tab);
+        card.addEventListener("click",go);
+        card.addEventListener("keydown",(e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); }});
       });
 
-      // Tabs activation
-      function activateTab(id) {
-        // Update hash (for shareability)
-        if (id) history.replaceState(null, '', '#' + id);
-        sections.forEach(sec => sec.classList.toggle('active', sec.id === id));
-        links.forEach(a => a.classList.toggle('active', a.dataset.tab === id));
-        // Scroll to top of content for better UX on mobile
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Tabs
+      function activateTab(id){
+        if(id) history.replaceState(null,"","#"+id);
+        sections.forEach(sec=>sec.classList.toggle("active",sec.id===id));
+        links.forEach(a=>a.classList.toggle("active",a.dataset.tab===id));
+        window.scrollTo({top:0,behavior:"smooth"});
       }
-
-      function fromHash() {
-        const id = location.hash.replace('#', '') || 'home';
-        const exists = sections.some(s => s.id === id);
-        activateTab(exists ? id : 'home');
+      function fromHash(){
+        const id=location.hash.replace("#","")||"home";
+        const exists=sections.some(s=>s.id===id);
+        activateTab(exists? id : "home");
       }
-      window.addEventListener('hashchange', fromHash);
+      window.addEventListener("hashchange",fromHash);
       fromHash();
 
-      // Expand/Collapse details a11y (toggle aria attributes)
-      $$('details.acc-item').forEach(d => {
-        const summary = d.querySelector('summary.acc-head');
-        const body = d.querySelector('.acc-body');
-        d.addEventListener('toggle', () => {
-          const open = d.open;
-          summary?.setAttribute('aria-expanded', String(open));
-          body?.setAttribute('aria-hidden', String(!open));
+      // details aria
+      $$("details.acc-item").forEach(d=>{
+        const summary=d.querySelector("summary.acc-head");
+        const body=d.querySelector(".acc-body");
+        d.addEventListener("toggle",()=>{
+          const open=d.open;
+          summary?.setAttribute("aria-expanded",String(open));
+          body?.setAttribute("aria-hidden",String(!open));
         });
       });
-
-      // Click on top nav to switch tabs without full reload
-      links.forEach(a => a.addEventListener('click', (e) => {
-        // Allow default hash update but prevent jump flicker
-        // e.preventDefault(); activateTab(a.dataset.tab);
-        // We prefer using hash routing to keep it shareable
-        // nothing extra here
-      }));
     })();
   </script>
 </body>
